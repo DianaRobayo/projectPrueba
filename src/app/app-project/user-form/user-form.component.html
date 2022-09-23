@@ -1,0 +1,103 @@
+
+
+<div class="max-w-xl mx-auto py-12 divide-y md:max-w-4xl">
+  <p class="text-3xl font-black text-blue-600">FORMULARIO</p>
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+    <form class="form" [formGroup]="form" >
+      <div class="grid grid-cols-1 gap-6">
+        <div class="mb-4">
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Nombre</label>
+          <input matInput type="text" formControlName="name"
+            class="form-input mt-1 block w-full rounded-full required:border-red-500" 
+            placeholder="Nombre" minlength="3"
+            required />
+          <mat-error *ngIf="fc.name.hasError('required') && submit">
+            El campo es obligatorio
+          </mat-error>
+          <mat-error *ngIf="!fc.name.hasError('required') && fc.name.hasError('minlength') && submit">
+            Mínimo 3 caracteres
+          </mat-error>
+        </div>
+        <div class="mb-4">
+          <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Apellido</span>
+          <input matInput type="text" formControlName="surname"
+            class="form-input mt-1 block w-full rounded-full" 
+            placeholder="Apellido" minlength="3" appOnly="Letters" />           
+          <mat-error *ngIf="!fc.surname.hasError('required') && fc.surname.hasError('minlength') && submit">
+            Mínimo 3 caracteres
+          </mat-error>
+        </div>
+        <div class="mb-4">
+          <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Documento</span>
+          <input matInput type="number" formControlName="document"
+            class="form-input mt-1 block w-full rounded-full required:border-red-500" 
+            placeholder="Documento" appOnly="Numbers"
+            required />
+          <mat-error *ngIf="fc.document.hasError('required') && submit">
+            El campo es obligatorio
+          </mat-error>
+          <mat-error *ngIf="!fc.document.hasError('required') && fc.document.hasError('pattern') && submit">
+            Mínimo 10 caracteres
+          </mat-error>         
+        </div>
+        <div class="mb-4">
+          <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Correo</span>
+          <input matInput type="email" formControlName="email"
+            class="form-input mt-1 block w-full rounded-full required:border-red-500" 
+            placeholder="correo" required />
+          <mat-error *ngIf="fc.email.hasError('required') && submit">
+            El campo es obligatorio
+          </mat-error>
+          <mat-error *ngIf="fc.email.hasError('email') && submit">
+            No es un correo
+          </mat-error>
+        </div>
+        <div class="mb-4">
+          <mat-form-field appearance="outline" class="w-full rounded-full">
+            <mat-label>Género</mat-label>
+            <mat-select formControlName="gender" [(ngModel)]="selectGender" ngDefaultControl>
+              <mat-option *ngFor="let data of genders" [value]="data.value">
+                {{data.name}} 
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="fc.gender.hasError('required') && submit">
+              El campo es obligatorio
+            </mat-error>            
+          </mat-form-field>
+        </div>
+        <div class="mb-4" *ngIf="fv.gender === '0'">
+          <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Edad</span>
+          <input matInput type="number" formControlName="age"
+            class="form-input mt-1 block w-full rounded-full" 
+            placeholder="Edad" min="0" appOnly="Numbers"
+            max="100" />
+          <mat-error *ngIf="!fc.age.hasError('required') && fc.age.hasError('max') && submit">
+            Máximo 100 caracteres
+          </mat-error>
+          <mat-error *ngIf="!fc.age.hasError('required') && fc.age.hasError('min') && submit">
+            Mínimo 0 caracteres
+          </mat-error>
+        </div>
+        <div class="mb-4">
+          <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="rounded" [(ngModel)]="selectHobby"
+            formControlName="hobby" >
+              <mat-radio-button *ngFor="let hob of hobbies" [value]="hob">
+                {{hob}}
+              </mat-radio-button>
+              <mat-error *ngIf="fc.hobby.hasError('required') && submit">
+                El campo es obligatorio
+              </mat-error> 
+          </mat-radio-group>
+        </div>        
+
+        <button mat-raised-button class="bg-blue-500 p-4 text-white rounded-lg" 
+          (click)="save()">
+          Guardar
+        </button>        
+
+      </div>
+    </form>
+  </div>
+</div>

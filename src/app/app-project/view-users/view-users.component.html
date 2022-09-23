@@ -1,0 +1,60 @@
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+  <table mat-table [dataSource]="dataSource" class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef 
+        class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"> 
+        Nombre 
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef 
+      class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"> 
+       Apellido
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="document">
+      <th mat-header-cell *matHeaderCellDef 
+      class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"> 
+       Documento
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.document}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef 
+      class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"> 
+       Correo
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef 
+      class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"> 
+       Género
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+    </ng-container>
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef 
+      class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"> 
+       Edad
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    </ng-container>
+    <ng-container matColumnDef="hobby">
+      <th mat-header-cell *matHeaderCellDef 
+      class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"> 
+       Pasatiempo
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.hobby}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table> 
+</div>
+
+<button mat-raised-button class="bg-blue-500 p-4 text-white rounded-lg" 
+  (click)="return()"> Regresar
+</button> 
+ 
